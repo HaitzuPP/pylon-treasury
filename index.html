@@ -31,7 +31,6 @@ h1,h2,h3,h4,h5,h6,.mono{font-family:'Fragment Mono',monospace}
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 
-/* Layout */
 .container{max-width:1120px;margin:0 auto;padding:0 1.5rem;width:100%}
 header{padding:1.5rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 header .logo{display:flex;flex-direction:column;gap:0.25rem}
@@ -40,33 +39,36 @@ header .sub{font-size:0.8rem;color:var(--fg2);font-family:'Inter',sans-serif}
 .theme-toggle{background:var(--bg3);border:1px solid var(--border);color:var(--fg2);padding:0.4rem 0.75rem;border-radius:var(--radius-sm);cursor:pointer;font-size:0.8rem;font-family:'Fragment Mono',monospace;transition:all 0.2s}
 .theme-toggle:hover{color:var(--fg);border-color:var(--fg3)}
 
-/* Hero */
 .hero{text-align:center;padding:3rem 0 2rem}
 .hero h2{font-size:2rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:0.5rem}
-.hero p{color:var(--fg2);font-size:1rem;max-width:480px;margin:0 auto}
+.hero p{color:var(--fg2);font-size:1rem;max-width:520px;margin:0 auto}
 
-/* Stats row */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
 .stat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.25rem;text-align:center;box-shadow:var(--shadow)}
 .stat-card .label{font-size:0.75rem;color:var(--fg3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.25rem}
 .stat-card .value{font-family:'Fragment Mono',monospace;font-size:1.5rem;font-weight:700}
 .stat-card .value.loading{color:var(--fg3);font-size:1rem}
 
-/* Wallet cards */
-.wallets{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;margin-bottom:2rem}
+.wallets{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1rem;margin-bottom:2rem}
 .wallet-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
 .wallet-card .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border)}
 .wallet-card .wallet-name{font-family:'Fragment Mono',monospace;font-size:1rem;font-weight:700}
 .wallet-card .wallet-addr{font-size:0.75rem;color:var(--fg3);font-family:'Fragment Mono',monospace}
 .wallet-card .wallet-total{font-family:'Fragment Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--green);text-align:right}
-.wallet-card .holdings{display:flex;flex-direction:column;gap:0.5rem}
-.holding-row{display:flex;justify-content:space-between;align-items:center}
+
+.chain-section{margin-bottom:0.75rem}
+.chain-label{font-size:0.7rem;color:var(--fg3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.35rem;display:flex;align-items:center;gap:0.4rem}
+.chain-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chain-dot.ethereum{background:#627eea}
+.chain-dot.base{background:#0052ff}
+.chain-dot.arbitrum{background:#28a0f0}
+.holdings{display:flex;flex-direction:column;gap:0.35rem}
+.holding-row{display:flex;justify-content:space-between;align-items:center;padding-left:1.2rem}
 .holding-row .token{display:flex;align-items:center;gap:0.5rem}
 .holding-row .token-symbol{font-family:'Fragment Mono',monospace;font-size:0.85rem;font-weight:600}
 .holding-row .token-bal{font-size:0.8rem;color:var(--fg2)}
 .holding-row .usd{font-family:'Fragment Mono',monospace;font-size:0.85rem;color:var(--fg2)}
 
-/* Breakdown */
 .breakdown{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem;box-shadow:var(--shadow)}
 .breakdown h3{font-size:1rem;margin-bottom:1rem}
 .bar-chart{display:flex;flex-direction:column;gap:0.5rem}
@@ -77,21 +79,20 @@ header .sub{font-size:0.8rem;color:var(--fg2);font-family:'Inter',sans-serif}
 .bar-fill.eth{background:linear-gradient(90deg,#627eea,#8b9df7)}
 .bar-fill.usdc{background:linear-gradient(90deg,#2775ca,#4a9ae8)}
 .bar-fill.usdt{background:linear-gradient(90deg,#26a17b,#50c4a1)}
+.bar-fill.dai{background:linear-gradient(90deg,#f5ac37,#f7c96e)}
+.bar-fill.usdbc{background:linear-gradient(90deg,#1e5ed9,#4a82e8)}
 .bar-pct{font-family:'Fragment Mono',monospace;font-size:0.75rem;color:var(--fg3);width:50px;text-align:right;flex-shrink:0}
 
-/* Footer */
 footer{margin-top:auto;padding:1.5rem 0;border-top:1px solid var(--border);text-align:center}
 footer p{font-size:0.8rem;color:var(--fg3)}
 .last-updated{font-size:0.75rem;color:var(--fg3);text-align:center;margin-bottom:1.5rem;font-family:'Fragment Mono',monospace}
 
-/* Responsive */
 @media(max-width:640px){
-  .stats{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
   .wallets{grid-template-columns:1fr}
   .hero h2{font-size:1.5rem}
   .stat-card .value{font-size:1.2rem}
 }
-/* Spinner */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--fg3);border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;vertical-align:middle}
 </style>
@@ -108,13 +109,14 @@ footer p{font-size:0.8rem;color:var(--fg3)}
 
   <section class="hero">
     <h2>Pylon Partners Treasury</h2>
-    <p>Real-time overview of on-chain treasury holdings across Ethereum mainnet wallets</p>
+    <p>Real-time overview of on-chain treasury holdings across Ethereum, Base &amp; Arbitrum</p>
   </section>
 
   <section class="stats" id="stats">
     <div class="stat-card"><div class="label">Total Portfolio Value</div><div class="value loading" id="totalValue"><span class="spinner"></span></div></div>
     <div class="stat-card"><div class="label">ETH Price</div><div class="value loading" id="ethPrice"><span class="spinner"></span></div></div>
-    <div class="stat-card"><div class="label">Wallets Tracked</div><div class="value">3</div></div>
+    <div class="stat-card"><div class="label">Chains</div><div class="value">3</div></div>
+    <div class="stat-card"><div class="label">Wallets</div><div class="value">3</div></div>
   </section>
 
   <section class="wallets" id="wallets"></section>
@@ -136,8 +138,28 @@ const WALLETS = [
   { name: 'Khala Cash In', addr: '0xcB23A5F76fFa21Dc5c6c502edaa22eF275F0c9Fa' }
 ];
 
-const USDC_ADDR = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
-const USDT_ADDR = '0xdac17f958d2ee523a2206206994597c13d831ec7';
+const CHAINS = [
+  { id: 'ethereum', label: 'Ethereum', api: 'https://eth.blockscout.com', explorer: 'https://etherscan.io' },
+  { id: 'base', label: 'Base', api: 'https://base.blockscout.com', explorer: 'https://basescan.org' },
+  { id: 'arbitrum', label: 'Arbitrum', api: 'https://arbitrum.blockscout.com', explorer: 'https://arbiscan.io' }
+];
+
+// Known tokens per chain: address (lowercase) -> { symbol, decimals }
+const KNOWN_TOKENS = {
+  ethereum: {
+    '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': { symbol: 'USDC', decimals: 6 },
+    '0xdac17f958d2ee523a2206206994597c13d831ec7': { symbol: 'USDT', decimals: 6 },
+    '0x6b175474e89094c44da98b954eedeac495271d0f': { symbol: 'DAI', decimals: 18 }
+  },
+  base: {
+    '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': { symbol: 'USDC', decimals: 6 },
+    '0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca': { symbol: 'USDbC', decimals: 6 }
+  },
+  arbitrum: {
+    '0xaf88d065e77c8cc2239327c5edb3a432268e5831': { symbol: 'USDC', decimals: 6 },
+    '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9': { symbol: 'USDT', decimals: 6 }
+  }
+};
 
 function toggleTheme() {
   const html = document.documentElement;
@@ -146,7 +168,6 @@ function toggleTheme() {
   localStorage.setItem('theme', next);
   document.getElementById('themeBtn').textContent = next === 'dark' ? 'light' : 'dark';
 }
-
 (function initTheme() {
   const saved = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
@@ -156,10 +177,7 @@ function toggleTheme() {
 function fmt(n, decimals = 2) {
   return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
-
-function truncAddr(a) {
-  return a.slice(0, 6) + '...' + a.slice(-4);
-}
+function truncAddr(a) { return a.slice(0, 6) + '...' + a.slice(-4); }
 
 async function fetchJSON(url, timeoutMs = 10000) {
   const ctrl = new AbortController();
@@ -172,79 +190,88 @@ async function fetchJSON(url, timeoutMs = 10000) {
 }
 
 async function getEthPrice() {
-  // Try direct first
   const base = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd';
-  try {
-    const d = await fetchJSON(base, 8000);
-    return d.ethereum.usd;
-  } catch {}
-  // corsproxy.io
-  try {
-    const d = await fetchJSON('https://corsproxy.io/?' + encodeURIComponent(base), 8000);
-    return d.ethereum.usd;
-  } catch {}
-  // allorigins
-  try {
-    const d = await fetchJSON('https://api.allorigins.win/get?url=' + encodeURIComponent(base), 8000);
-    const p = JSON.parse(d.contents);
-    return p.ethereum.usd;
-  } catch {}
+  try { const d = await fetchJSON(base, 8000); return d.ethereum.usd; } catch {}
+  try { const d = await fetchJSON('https://corsproxy.io/?' + encodeURIComponent(base), 8000); return d.ethereum.usd; } catch {}
+  try { const d = await fetchJSON('https://api.allorigins.win/get?url=' + encodeURIComponent(base), 8000); return JSON.parse(d.contents).ethereum.usd; } catch {}
   return null;
 }
 
-async function getWalletData(addr) {
-  const [info, tokens] = await Promise.all([
-    fetchJSON(`https://eth.blockscout.com/api/v2/addresses/${addr}`),
-    fetchJSON(`https://eth.blockscout.com/api/v2/addresses/${addr}/token-balances`)
-  ]);
-  const ethBal = parseFloat(info.coin_balance) / 1e18;
-  let usdc = 0, usdt = 0;
-  for (const t of tokens) {
-    const ta = (t.token?.address || '').toLowerCase();
-    const raw = parseFloat(t.value || '0');
-    if (ta === USDC_ADDR) usdc = raw / 1e6;
-    else if (ta === USDT_ADDR) usdt = raw / 1e6;
+async function getChainData(chain, addr) {
+  const result = { ethBal: 0, tokens: [] };
+  try {
+    const [info, tokens] = await Promise.all([
+      fetchJSON(`${chain.api}/api/v2/addresses/${addr}`, 12000),
+      fetchJSON(`${chain.api}/api/v2/addresses/${addr}/token-balances`, 12000)
+    ]);
+    result.ethBal = parseFloat(info.coin_balance || '0') / 1e18;
+    const known = KNOWN_TOKENS[chain.id] || {};
+    for (const t of tokens) {
+      const ta = (t.token?.address || '').toLowerCase();
+      if (known[ta]) {
+        const raw = parseFloat(t.value || '0');
+        const bal = raw / Math.pow(10, known[ta].decimals);
+        if (bal > 0.01) {
+          result.tokens.push({ symbol: known[ta].symbol, balance: bal });
+        }
+      }
+    }
+  } catch (e) {
+    console.warn(`Failed ${chain.id}/${truncAddr(addr)}:`, e.message);
   }
-  return { ethBal, usdc, usdt };
+  return result;
 }
 
-function renderWallets(data, ethP) {
+function renderWallets(walletData, ethP) {
   const container = document.getElementById('wallets');
   container.innerHTML = '';
   let totalPortfolio = 0;
-  const totals = { ETH: 0, USDC: 0, USDT: 0 };
+  const globalTotals = {};
 
-  for (const w of data) {
-    const ethUsd = w.data.ethBal * ethP;
-    const walletTotal = ethUsd + w.data.usdc + w.data.usdt;
-    totalPortfolio += walletTotal;
-    totals.ETH += ethUsd;
-    totals.USDC += w.data.usdc;
-    totals.USDT += w.data.usdt;
-
-    const holdings = [];
-    if (w.data.ethBal > 0.0001) holdings.push({ sym: 'ETH', bal: fmt(w.data.ethBal, 4), usd: ethUsd });
-    if (w.data.usdc > 0.01) holdings.push({ sym: 'USDC', bal: fmt(w.data.usdc, 2), usd: w.data.usdc });
-    if (w.data.usdt > 0.01) holdings.push({ sym: 'USDT', bal: fmt(w.data.usdt, 2), usd: w.data.usdt });
-
+  for (const w of walletData) {
+    let walletTotal = 0;
     const card = document.createElement('div');
     card.className = 'wallet-card';
+    let chainsHTML = '';
+
+    for (const cd of w.chains) {
+      const chain = cd.chain;
+      const data = cd.data;
+      const holdings = [];
+      if (data.ethBal > 0.0001) {
+        const usd = data.ethBal * ethP;
+        holdings.push({ sym: 'ETH', bal: fmt(data.ethBal, 4), usd });
+        walletTotal += usd;
+        globalTotals['ETH'] = (globalTotals['ETH'] || 0) + usd;
+      }
+      for (const tk of data.tokens) {
+        holdings.push({ sym: tk.symbol, bal: fmt(tk.balance, 2), usd: tk.balance });
+        walletTotal += tk.balance;
+        globalTotals[tk.symbol] = (globalTotals[tk.symbol] || 0) + tk.balance;
+      }
+      if (holdings.length > 0) {
+        chainsHTML += `<div class="chain-section">
+          <div class="chain-label"><span class="chain-dot ${chain.id}"></span>${chain.label}</div>
+          <div class="holdings">${holdings.map(h => `
+            <div class="holding-row">
+              <div class="token"><span class="token-symbol">${h.sym}</span><span class="token-bal">${h.bal}</span></div>
+              <span class="usd">$${fmt(h.usd)}</span>
+            </div>`).join('')}
+          </div>
+        </div>`;
+      }
+    }
+
+    totalPortfolio += walletTotal;
     card.innerHTML = `
       <div class="card-header">
         <div>
           <div class="wallet-name">${w.name}</div>
-          <a class="wallet-addr" href="https://etherscan.io/address/${w.addr}" target="_blank" rel="noopener">${truncAddr(w.addr)}</a>
+          <span class="wallet-addr">${truncAddr(w.addr)}</span>
         </div>
         <div class="wallet-total">$${fmt(walletTotal)}</div>
       </div>
-      <div class="holdings">
-        ${holdings.map(h => `
-          <div class="holding-row">
-            <div class="token"><span class="token-symbol">${h.sym}</span><span class="token-bal">${h.bal}</span></div>
-            <span class="usd">$${fmt(h.usd)}</span>
-          </div>
-        `).join('')}
-      </div>
+      ${chainsHTML || '<div style="color:var(--fg3);font-size:0.85rem">No balances found</div>'}
     `;
     container.appendChild(card);
   }
@@ -255,18 +282,15 @@ function renderWallets(data, ethP) {
   // Breakdown bars
   const chart = document.getElementById('barChart');
   chart.innerHTML = '';
-  const items = [
-    { label: 'ETH', val: totals.ETH, cls: 'eth' },
-    { label: 'USDC', val: totals.USDC, cls: 'usdc' },
-    { label: 'USDT', val: totals.USDT, cls: 'usdt' }
-  ];
-  for (const item of items) {
-    const pct = totalPortfolio > 0 ? (item.val / totalPortfolio * 100) : 0;
+  const barClasses = { ETH: 'eth', USDC: 'usdc', USDT: 'usdt', DAI: 'dai', USDbC: 'usdbc' };
+  const sorted = Object.entries(globalTotals).sort((a, b) => b[1] - a[1]);
+  for (const [sym, val] of sorted) {
+    const pct = totalPortfolio > 0 ? (val / totalPortfolio * 100) : 0;
     const row = document.createElement('div');
     row.className = 'bar-row';
     row.innerHTML = `
-      <span class="bar-label">${item.label}</span>
-      <div class="bar-track"><div class="bar-fill ${item.cls}" style="width:${pct}%"></div></div>
+      <span class="bar-label">${sym}</span>
+      <div class="bar-track"><div class="bar-fill ${barClasses[sym] || 'usdc'}" style="width:${pct}%"></div></div>
       <span class="bar-pct">${fmt(pct, 1)}%</span>
     `;
     chart.appendChild(row);
@@ -275,14 +299,18 @@ function renderWallets(data, ethP) {
 
 async function refresh() {
   try {
-    const [ethP, ...walletResults] = await Promise.all([
-      getEthPrice(),
-      ...WALLETS.map(w => getWalletData(w.addr).then(data => ({ ...w, data })))
-    ]);
+    const ethPPromise = getEthPrice();
+    const walletPromises = WALLETS.map(async w => {
+      const chains = await Promise.all(CHAINS.map(async chain => ({
+        chain,
+        data: await getChainData(chain, w.addr)
+      })));
+      return { ...w, chains };
+    });
+    const [ethP, ...walletResults] = await Promise.all([ethPPromise, ...walletPromises]);
     if (!ethP) { document.getElementById('lastUpdated').textContent = 'Failed to fetch ETH price'; return; }
     renderWallets(walletResults, ethP);
-    const now = new Date();
-    document.getElementById('lastUpdated').textContent = 'Last updated: ' + now.toLocaleString();
+    document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleString();
   } catch (e) {
     console.error('Refresh error:', e);
     document.getElementById('lastUpdated').textContent = 'Error refreshing data - retrying...';
