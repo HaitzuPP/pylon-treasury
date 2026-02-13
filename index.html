@@ -205,14 +205,15 @@ async function getChainData(chain, addr) {
       fetchJSON(`${chain.api}/api/v2/addresses/${addr}/token-balances`, 12000)
     ]);
     result.ethBal = parseFloat(info.coin_balance || '0') / 1e18;
-    const known = KNOWN_TOKENS[chain.id] || {};
+    const STABLE_SYMBOLS = new Set(['USDC', 'USDT', 'DAI', 'USDbC']);
     for (const t of tokens) {
-      const ta = (t.token?.address || '').toLowerCase();
-      if (known[ta]) {
+      const sym = t.token?.symbol || '';
+      const dec = parseInt(t.token?.decimals || '18');
+      if (STABLE_SYMBOLS.has(sym)) {
         const raw = parseFloat(t.value || '0');
-        const bal = raw / Math.pow(10, known[ta].decimals);
+        const bal = raw / Math.pow(10, dec);
         if (bal > 0.01) {
-          result.tokens.push({ symbol: known[ta].symbol, balance: bal });
+          result.tokens.push({ symbol: sym, balance: bal });
         }
       }
     }
