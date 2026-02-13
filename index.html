@@ -112,8 +112,11 @@ footer p{font-size:0.8rem;color:var(--fg3)}
     <p>Real-time overview of on-chain treasury holdings across Ethereum, Base &amp; Arbitrum</p>
   </section>
 
-  <section class="stats" id="stats">
-    <div class="stat-card"><div class="label">Total Portfolio Value</div><div class="value loading" id="totalValue"><span class="spinner"></span></div></div>
+  <div style="text-align:center;margin-bottom:2rem">
+    <div style="font-family:Inter,sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:.5rem">Total Portfolio Value</div>
+    <div style="font-family:'Fragment Mono',monospace;font-size:clamp(32px,5vw,48px);font-weight:400;color:var(--accent)" id="totalValue">...</div>
+  </div>
+  <section class="stats" id="stats" style="grid-template-columns:repeat(3,1fr)">
     <div class="stat-card"><div class="label">ETH Price</div><div class="value loading" id="ethPrice"><span class="spinner"></span></div></div>
     <div class="stat-card"><div class="label">Chains</div><div class="value">3</div></div>
     <div class="stat-card"><div class="label">Wallets</div><div class="value">3</div></div>
@@ -205,16 +208,23 @@ async function getChainData(chain, addr) {
       fetchJSON(`${chain.api}/api/v2/addresses/${addr}/token-balances`, 12000)
     ]);
     result.ethBal = parseFloat(info.coin_balance || '0') / 1e18;
-    const STABLE_SYMBOLS = new Set(['USDC', 'USDT', 'DAI', 'USDbC']);
+    const VALID_TOKENS = {
+      'USDC|USDC': 6, 'USDT|Tether': 6, 'DAI|Dai': 18, 'DAI|Dai Stablecoin': 18,
+      'USDbC|USD Base Coin': 6, 'USDbC|Bridged USDC': 6, 'USDT|Tether USD': 6,
+      'USDC|USD Coin': 6
+    };
+    const seen = new Set();
     for (const t of tokens) {
       const sym = t.token?.symbol || '';
+      const name = t.token?.name || '';
       const dec = parseInt(t.token?.decimals || '18');
-      if (STABLE_SYMBOLS.has(sym)) {
-        const raw = parseFloat(t.value || '0');
-        const bal = raw / Math.pow(10, dec);
-        if (bal > 0.01) {
-          result.tokens.push({ symbol: sym, balance: bal });
-        }
+      const key = sym + '|' + name;
+      if (!(key in VALID_TOKENS)) continue;
+      const raw = parseFloat(t.value || '0');
+      const bal = raw / Math.pow(10, dec);
+      if (bal > 0.01 && bal < 1e9 && !seen.has(sym)) {
+        seen.add(sym);
+        result.tokens.push({ symbol: sym, balance: bal });
       }
     }
   } catch (e) {
